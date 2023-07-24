@@ -3,8 +3,7 @@ package com.example.zapatsrpint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-
-
+import com.example.zapatsrpint.databinding.ItemBinding
 
 
 class Adapter:RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -28,7 +27,7 @@ class Adapter:RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     class ViewHolder(val binding: ItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(zapatilla:Zapatilla {
+        fun bind(zapatilla:Zapatilla()
             binding.nombrePokem.text= pokemon.nombre
             binding.tipoPokemon.text= pokemon.tipo
             binding.imageViewPok.load(pokemon.imgUrl)

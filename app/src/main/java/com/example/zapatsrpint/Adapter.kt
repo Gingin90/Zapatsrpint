@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.zapatsrpint.databinding.ItemBinding
 
 
+
+
 class Adapter:RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var zapatilla= mutableListOf<Zapatilla>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -26,9 +28,15 @@ class Adapter:RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         this.zapatilla = zapatilla.toMutableList()
     }
 
-    class ViewHolder(val binding: ItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(zapatilla:Zapatilla()
-            binding.nombrePokem.text= pokemon.nombre
-            binding.tipoPokemon.text= pokemon.tipo
-            binding.imageViewPok.load(pokemon.imgUrl)
+    class ViewHolder( val binding: ItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    }
+
+    fun bind(zapatilla: Zapatilla()
+
+            binding.tvNombre.text= zapatilla.nombre
+            binding.tvPrecio.text= precio.tipo
+            binding.imageViewZap.load(zapatilla.imgUrl)
+
+
+
         }

@@ -5,27 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="57dp"
-        android:layout_height="44dp"
-        android:layout_marginBottom="416dp"
-        android:text="TextView"
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textView2"
-        app:layout_constraintStart_toStartOf="@+id/textView2" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tVNombre"
+        android:layout_width="140dp"
+        android:layout_height="65dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewZap"
+        app:layout_constraintStart_toStartOf="@+id/imageViewZap"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewZap" />
+
+    <TextView
+        android:id="@+id/tVPrecio"
         android:layout_width="143dp"
         android:layout_height="58dp"
-        android:layout_marginStart="112dp"
+        android:layout_marginTop="14dp"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="@+id/imageViewZap"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewZap"
-        app:layout_constraintVertical_bias="0.551" />
+        app:layout_constraintEnd_toEndOf="@+id/tVNombre"
+        app:layout_constraintStart_toStartOf="@+id/tVNombre"
+        app:layout_constraintTop_toBottomOf="@+id/tVNombre" />
 
     <ImageView
         android:id="@+id/imageViewZap"
@@ -40,22 +45,11 @@
         android:id="@+id/btAñadir"
         android:layout_width="124dp"
         android:layout_height="64dp"
-        android:layout_marginStart="210dp"
-        android:layout_marginTop="173dp"
-        android:layout_marginEnd="107dp"
-        android:layout_marginBottom="88dp"
         android:text="Añadir"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/tVNombre" />
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 

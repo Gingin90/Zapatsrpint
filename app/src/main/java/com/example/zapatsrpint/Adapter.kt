@@ -8,12 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.zapatsrpint.databinding.ItemBinding
 
 
-private fun RecyclerView.ViewHolder.bind(item: Zapatilla) {
+private fun RecyclerView.ViewHolder.bind(item: Zapato) {
 
 }
 
 class Adapter:RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    var zapatos = mutableListOf<Zapatilla>()
+    var zapatos = mutableListOf<Zapato>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val binding= ItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return ViewHolder (binding)

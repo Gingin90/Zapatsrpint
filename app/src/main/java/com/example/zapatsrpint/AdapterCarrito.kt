@@ -7,7 +7,7 @@ import coil.load
 import com.example.zapatsrpint.databinding.ItemcarritoBinding
 
 class AdapterCarrito: RecyclerView.Adapter <AdapterCarrito.ViewHolder>() {
-    var zapatos = mutableListOf<zapato>()
+    var zapatos = mutableListOf<Zapatio>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterCarrito.ViewHolder {
 
         var binding =ItemcarritoBinding.inflate(LayoutInflater.from(parent.context),parent , false)
@@ -25,11 +25,11 @@ class AdapterCarrito: RecyclerView.Adapter <AdapterCarrito.ViewHolder>() {
         return zapatos.size
     }
 
-    fun setData(listazapatos: List<zapato>){
+    fun setData(listazapatos: List<Zapatio>){
         zapatos = listazapatos.toMutableList()
     }
     inner class ViewHolder ( val binding: ItemcarritoBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(item:zapato){
+        fun bind(item:Zapatio){
 
             binding.txtNombreItem.text=item.nombre
             binding.txtPrecioItem.text = item.precio.toString()

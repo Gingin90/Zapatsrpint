@@ -8,7 +8,7 @@ package com.example.zapatsrpint
         img:String,
         precio:Double
     ) {
-        val zapato = zapato(nombre, img, precio)
+        val zapato = Zapatio(nombre, img, precio)
         val zapatos = modelo.guardarData(zapato)
         view.guardarData(zapatos)
     }}

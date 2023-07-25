@@ -7,14 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import com.example.zapatsrpint.databinding.FragmentShoesBinding
-
-
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-
-
 /**
  * A simple [Fragment] subclass.
  * Use the [ShoesFragment.newInstance] factory method to
@@ -55,8 +51,8 @@ class ShoesFragment : Fragment() {
         val adapter = Adapter()
         val zapatos = Zapato()
 
-        val listaZapatos = zapatos.returnShoeList()
-        adapter.setData(listaZapatos)
+        val listaZapato = zapatos.returnShoeList()
+        adapter.setData(listaZapato)
         binding.recyclerView.adapter =adapter
 
     }

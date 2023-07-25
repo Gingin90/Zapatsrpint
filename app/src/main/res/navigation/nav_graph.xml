@@ -30,6 +30,6 @@
         tools:layout="@layout/fragment_carrito" >
         <action
             android:id="@+id/action_carritoFragment_to_detailFragment"
-            app:destination="@id/shoesFragment" />
+            app:destination="@id/detailFragment" />
     </fragment>
 </navigation>

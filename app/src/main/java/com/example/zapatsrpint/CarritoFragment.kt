@@ -76,7 +76,7 @@ class CarritoFragment: Fragment() {
         }
     }
 
-    private fun calcularValor(lista:MutableList<zapato>): Double {
+    private fun calcularValor(lista:MutableList<Zapatio>): Double {
         var valorTotal:Double=0.0
         lista.forEach { data ->
             valorTotal += data.precio.toInt()
@@ -84,9 +84,9 @@ class CarritoFragment: Fragment() {
         return valorTotal
     }
 
-    fun getList(): MutableList<zapato> {
+    fun getList(): MutableList<Zapatio> {
         val jsonString = mSharedPreferences.getString("mi lista", null)
-        val listType = object : TypeToken<MutableList<zapato>>() {}.type
+        val listType = object : TypeToken<MutableList<Zapatio>>() {}.type
         return gson.fromJson(jsonString, listType) ?: mutableListOf()
     }
 

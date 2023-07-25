@@ -1,5 +1,5 @@
 package com.example.zapatsrpint
 
 interface IviewPresenter {
-    fun guardarData(mutableList: MutableList<zapato>)
+    fun guardarData(mutableList: MutableList<Zapatio>)
 }

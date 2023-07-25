@@ -27,11 +27,11 @@ private const val ARG_PARAM3 = "url"
  * Use the [detalle.newInstance] factory method to
  * create an instance of this fragment.
  */
-class DetailFragment: Fragment(),IviewPresenter {
+ class Detail: Fragment(),IviewPresenter {
     private lateinit var binging:FragmentDetailBinding
     private lateinit var mSharedPreferences:SharedPreferences
     private lateinit var gson: Gson
-    private lateinit var  zapatoslista: MutableList<Zapato>
+    private lateinit var  zapatoslista: MutableList<Zapatio>
     val bundle = Bundle()
 
     // TODO: Rename and change types of parameters
@@ -81,11 +81,11 @@ class DetailFragment: Fragment(),IviewPresenter {
         val preferences = this.requireActivity().getSharedPreferences("pref", MODE_PRIVATE)
         binging.btnComprar.setOnClickListener{
 
-
-            var nombre = param1.toString()
+            var nombre= param1.toString()
             var precio = param2.toString().toDouble()
             var img = param3.toString()
-            val zp = zapato(nombre,img,precio)
+            val zp = Zapatio(nombre,img,precio)
+
 
             zapatoslista.add(zp)
 
@@ -102,9 +102,9 @@ class DetailFragment: Fragment(),IviewPresenter {
 
         }
     }
-    fun getList(): MutableList<zapato> {
+    fun getList(): MutableList<Zapatio> {
         val jsonString = mSharedPreferences.getString("mi lista", null)
-        val listType = object : TypeToken <MutableList<zapato>>() {}.type
+        val listType = object : TypeToken <MutableList<Zapatio>>() {}.type
         return gson.fromJson(jsonString, listType) ?: mutableListOf()
     }
 
@@ -124,7 +124,7 @@ class DetailFragment: Fragment(),IviewPresenter {
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            DetailFragment().apply {
+            Detail().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
@@ -132,12 +132,15 @@ class DetailFragment: Fragment(),IviewPresenter {
             }
     }
 
-    override fun guardarData(data: MutableList<zapato>) {
+    override fun guardarData(data: MutableList<Zapatio>) {
         zapatoslista = data
     }
 
 
 }
+
+
+
 
 
 

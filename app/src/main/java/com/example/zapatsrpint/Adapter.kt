@@ -1,7 +1,6 @@
 package com.example.zapatsrpint
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
@@ -10,7 +9,7 @@ import com.example.zapatsrpint.databinding.ItemBinding
 
 
 class Adapter: RecyclerView.Adapter <Adapter.ViewHolder>() {
-    var zapatos = mutableListOf<zapato>()
+    var zapatos = mutableListOf<Zapatio>()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Adapter.ViewHolder {
@@ -29,12 +28,13 @@ class Adapter: RecyclerView.Adapter <Adapter.ViewHolder>() {
         return zapatos.size
     }
 
-    fun setData(listazapatos: List<zapato>){
+
+    fun setData(listazapatos: List<Zapatio>){
         zapatos = listazapatos.toMutableList()
     }
 
     inner class ViewHolder (val binding: ItemBinding):RecyclerView.ViewHolder(binding.root){
-        fun bind(item:zapato){
+        fun bind(item:Zapatio){
 
             binding.txtNombre.text = item.nombre
             binding.txtPrecio.text = item.precio.toString()
@@ -44,6 +44,7 @@ class Adapter: RecyclerView.Adapter <Adapter.ViewHolder>() {
             bundle.putString("precio", item.precio.toString())
             bundle.putString("url",item.url)
             binding.cardview.setOnClickListener({
+
                 Navigation.findNavController(binding.root).navigate(R.id.action_shoesFragment_to_detailFragment,bundle)
             })
         }

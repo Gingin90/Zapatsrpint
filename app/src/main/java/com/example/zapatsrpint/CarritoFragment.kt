@@ -1,10 +1,20 @@
 package com.example.zapatsrpint
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
+import com.example.zapatsrpint.databinding.FragmentCarritoBinding
+
+class Carrito :Fragment{
+private lateinit var mSharedPreferences: SharedPreferences
+private lateinit var gsn: Gsn
+private lateinit var binging: FragmentCarritoBinding
+private lateinit var bingingAdapter: ItemCarritoBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,8 +43,44 @@ class CarritoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        binding= FragmentCarritoBinding.inflate(layoutInflater)
+        bindingAdapter = ItemCarritoBinding.inflate(layoutInflater)
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_carrito, container, false)
+        initListener()
+        return (binding.root)
+
+    }
+
+    private fun initListener() {
+
+        mSharedPreferences =requireContext().getSharedPreferences("data", Context.MODE_PRIVATE)
+        gsn = Gsn()
+        var lista =getList()
+        val adapter = Adapter()
+        adapter.setData(lista)
+        binding.recyclerViewCarro.adapter=adapter
+        var valorTotal:Double = calcularValor(lista)
+        binging.btnBorrarLista.setOnClickListener {
+            mSharedPreferences.edit().clear().apply()
+            Navigation.findNavController(requireView()).navigate(R.id.action.action_carritoFragment_to_detailFragment)
+        }
+        bingingAdapter.btnBorrarSeleccionado.setOnClickListener{
+            valorTotal = calcularValor(lista)
+        }
+    }
+
+    private fun calcularValor(lista:MutableList<zapato>): Double {
+        var valorTotal:Double=0.0
+        lista.forEach { data ->
+            valorTotal += data.precio.toInt()
+        }
+        return valorTotal
+    }
+
+    fun getList(): MutableList<zapato> {
+        val jsonString = mSharedPreferences.getString("mi lista", null)
+        val listType = object : TypeToken<MutableList<zapato>>() {}.type
+        return gson.fromJson(jsonString, listType) ?: mutableListOf()
     }
 
     companion object {

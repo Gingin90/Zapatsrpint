@@ -1,41 +1,108 @@
 package com.example.zapatsrpint
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.Navigation
+import com.example.zapatsrpint.databinding.FragmentDetailBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+private const val ARG_PARAM1 = "nombre"
+private const val ARG_PARAM2 = "precio"
+private const val ARG_PARAM3 = "url"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [DetailFragment.newInstance] factory method to
+ * Use the [detalle.newInstance] factory method to
  * create an instance of this fragment.
  */
-class DetailFragment : Fragment() {
+class detalle : Fragment(),IviewPresenter {
+    private lateinit var binging:FragmentDetailBinding
+    private lateinit var mSharedPreferences:SharedPreferences
+    private lateinit var gsn: Gsn
+    private lateinit var  zapatoslista: MutableList<zapato>
+    val bundle = Bundle()
+
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private var param3: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
+            param3 = it.getString(ARG_PARAM3)
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?
+            ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detail, container, false)
+        binging = FragmentDetailBinding.inflate(layoutInflater)
+        initListener()
+        return binging.root
     }
+    private fun initListener() {
+        binging.img.load(param3)
+        binging.txtName.text =param1
+        binging.txtAmount.text = "$$param2"
+        mSharedPreferences =requireContext().getSharedPreferences("data", Context.MODE_PRIVATE)
+        gson = Gson()
+
+        zapatoslista = getList()
+
+        binging.imgCarrito.setOnClickListener {
+            Navigation.findNavController(requireView()).navigate(R.id.action_detalle_to_carrito,bundle)
+        }
+
+        SaveData()
+
+    }
+
+    private fun SaveData() {
+        val preferences = this.requireActivity().getSharedPreferences("pref", Context.MODE_PRIVATE)
+        binging.btnComprar.setOnClickListener{
+
+
+            var nombre = param1.toString()
+            var precio = param2.toString().toDouble()
+            var img = param3.toString()
+            val zp = zapato(nombre,img,precio)
+
+            zapatoslista.add(zp)
+
+            guardarData(zapatoslista)
+
+
+            mSharedPreferences =requireContext().getSharedPreferences("data", Context.MODE_PRIVATE)
+            gsn = Gsn()
+
+            val jsonString = gsn.toJson(zapatoslista)
+            mSharedPreferences.edit().putString("mi lista", jsonString).apply()
+
+            Toast.makeText(requireContext(), "Añadido al carro", Toast.LENGTH_SHORT).show()
+
+        }
+    }
+    fun getList(): MutableList<zapato> {
+        val jsonString = mSharedPreferences.getString("mi lista", null)
+        val listType = object : TypeToken<MutableList<zapato>>() {}.type
+        return gson.fromJson(jsonString, listType) ?: mutableListOf()
+    }
+
+
+}
+
+
 
     companion object {
         /**
@@ -56,4 +123,8 @@ class DetailFragment : Fragment() {
                 }
             }
     }
-}
+
+
+override fun guardarData(mutableList: MutableList<zapato>) {
+         TODO("Not yet implemented")
+     }

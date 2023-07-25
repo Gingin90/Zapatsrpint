@@ -9,21 +9,29 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.Navigation
+import coil.load
 import com.example.zapatsrpint.databinding.FragmentDetailBinding
 
 private const val ARG_PARAM1 = "nombre"
 private const val ARG_PARAM2 = "precio"
 private const val ARG_PARAM3 = "url"
 
+class Gson {
+    fun toJson(zapatoslista: MutableList<zapato>): String? {
+
+    }
+
+}
+
 /**
  * A simple [Fragment] subclass.
  * Use the [detalle.newInstance] factory method to
  * create an instance of this fragment.
  */
-class detalle : Fragment(),IviewPresenter {
+class detail : Fragment(),IviewPresenter {
     private lateinit var binging:FragmentDetailBinding
     private lateinit var mSharedPreferences:SharedPreferences
-    private lateinit var gsn: Gsn
+    private lateinit var gson:Gson
     private lateinit var  zapatoslista: MutableList<zapato>
     val bundle = Bundle()
 
@@ -52,7 +60,7 @@ class detalle : Fragment(),IviewPresenter {
         return binging.root
     }
     private fun initListener() {
-        binging.img.load(param3)
+        binging.imgCarro.load(param3)
         binging.txtName.text =param1
         binging.txtAmount.text = "$$param2"
         mSharedPreferences =requireContext().getSharedPreferences("data", Context.MODE_PRIVATE)
@@ -60,8 +68,8 @@ class detalle : Fragment(),IviewPresenter {
 
         zapatoslista = getList()
 
-        binging.imgCarrito.setOnClickListener {
-            Navigation.findNavController(requireView()).navigate(R.id.action_detalle_to_carrito,bundle)
+        binging.imgCarro.setOnClickListener {
+            Navigation.findNavController(requireView()).navigate(R.id.action_detailFragment_to_carritoFragment,bundle)
         }
 
         SaveData()
@@ -84,9 +92,9 @@ class detalle : Fragment(),IviewPresenter {
 
 
             mSharedPreferences =requireContext().getSharedPreferences("data", Context.MODE_PRIVATE)
-            gsn = Gsn()
+            gson = Gson()
 
-            val jsonString = gsn.toJson(zapatoslista)
+            val jsonString = gson.toJson(zapatoslista)
             mSharedPreferences.edit().putString("mi lista", jsonString).apply()
 
             Toast.makeText(requireContext(), "Añadido al carro", Toast.LENGTH_SHORT).show()
@@ -95,36 +103,39 @@ class detalle : Fragment(),IviewPresenter {
     }
     fun getList(): MutableList<zapato> {
         val jsonString = mSharedPreferences.getString("mi lista", null)
-        val listType = object : TypeToken<MutableList<zapato>>() {}.type
+        val listType = object :TypeToken<MutableList<zapato>>() {}.type
         return gson.fromJson(jsonString, listType) ?: mutableListOf()
     }
 
+    override fun guardarData(mutableList: MutableList<zapato>) {
+        zapatoslista = data
 
-}
+    }
 
 
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment DetailFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            DetailFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+
+
+   companion object {
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment detalle.
+     */
+    // TODO: Rename and change types and number of parameters
+    @JvmStatic
+    fun newInstance(param1: String, param2: String) =
+        detatail().apply {
+            arguments= Bundle().apply {
+                putString(ARG_PARAM1, param1)
+                putString(ARG_PARAM2, param2)
                 }
             }
     }
 
 
-override fun guardarData(mutableList: MutableList<zapato>) {
-         TODO("Not yet implemented")
-     }
+
+

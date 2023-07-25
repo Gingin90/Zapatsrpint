@@ -7,118 +7,26 @@
     tools:context=".ShoesFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewzap"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/recyclerViewCarro"
+        android:layout_width="340dp"
+        android:layout_height="571dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.352"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <ImageView
-        android:id="@+id/imageViewzap2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.865"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars" />
-
-    <ImageView
-        android:id="@+id/imageViewzap4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.865"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewzap2"
-        tools:src="@tools:sample/avatars" />
-
-    <ImageView
-        android:id="@+id/imageViewzap1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageViewzap2"
-        app:layout_constraintHorizontal_bias="0.769"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars" />
-
-    <ImageView
-        android:id="@+id/imageViewzap3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageViewzap4"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewzap1"
-        tools:src="@tools:sample/avatars" />
-
-    <TextView
-        android:id="@+id/tVzap4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="60dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="@+id/tVzap3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewzap4" />
-
-    <TextView
-        android:id="@+id/tVzap1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="132dp"
-        android:layout_marginTop="22dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/imageViewzap3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewzap1"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/tVzap2"
-        android:layout_width="58dp"
-        android:layout_height="19dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginBottom="526dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="@+id/recyclerViewzap"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toEndOf="@+id/tVzap1"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewzap2" />
-
-    <TextView
-        android:id="@+id/tVzap3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:layout_marginBottom="50dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/btCompra"
-        app:layout_constraintEnd_toStartOf="@+id/tVzap4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewzap3" />
+        app:layout_constraintVertical_bias="0.1" />
 
     <Button
-        android:id="@+id/btCompra"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="156dp"
-        android:text="carrito"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/btnBorrarLista"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="52dp"
+        android:text="Borrar lista"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintHorizontal_bias="0.153"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewCarro" />
 </androidx.constraintlayout.widget.ConstraintLayout>

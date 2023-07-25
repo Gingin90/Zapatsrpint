@@ -9,12 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import com.example.zapatsrpint.databinding.FragmentCarritoBinding
+import com.example.zapatsrpint.databinding.ItemBinding
 
-class Carrito :Fragment{
-private lateinit var mSharedPreferences: SharedPreferences
-private lateinit var gsn: Gsn
-private lateinit var binging: FragmentCarritoBinding
-private lateinit var bingingAdapter: ItemCarritoBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,6 +23,11 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class CarritoFragment : Fragment() {
+
+    private lateinit var mSharedPreferences: SharedPreferences
+    private lateinit var gson: Gson
+    private lateinit var binging: FragmentCarritoBinding
+    private lateinit var bingingAdapter: ItemBinding
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -43,8 +44,8 @@ class CarritoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding= FragmentCarritoBinding.inflate(layoutInflater)
-        bindingAdapter = ItemCarritoBinding.inflate(layoutInflater)
+        binding = FragmentCarritoBinding.inflate(layoutInflater)
+        bindingAdapter = ItemBinding.inflate(layoutInflater)
         // Inflate the layout for this fragment
         initListener()
         return (binding.root)
@@ -54,7 +55,7 @@ class CarritoFragment : Fragment() {
     private fun initListener() {
 
         mSharedPreferences =requireContext().getSharedPreferences("data", Context.MODE_PRIVATE)
-        gsn = Gsn()
+        gson = Gson()
         var lista =getList()
         val adapter = Adapter()
         adapter.setData(lista)
@@ -62,7 +63,7 @@ class CarritoFragment : Fragment() {
         var valorTotal:Double = calcularValor(lista)
         binging.btnBorrarLista.setOnClickListener {
             mSharedPreferences.edit().clear().apply()
-            Navigation.findNavController(requireView()).navigate(R.id.action.action_carritoFragment_to_detailFragment)
+            Navigation.findNavController(requireView()).navigate(R.id.action_shoesFragment_to_detailFragment)
         }
         bingingAdapter.btnBorrarSeleccionado.setOnClickListener{
             valorTotal = calcularValor(lista)

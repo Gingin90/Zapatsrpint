@@ -10,16 +10,4 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
-        initAdapter()
-
-    }
-
-    private fun initAdapter() {
-        val adapter = Adapter()
-        val zapatilla = Zapatilla.getZapatilla()
-        adapter.setData(zapatilla)
-        binding.RecyclerView.adapter = adapter
-    }
-}
+    }}

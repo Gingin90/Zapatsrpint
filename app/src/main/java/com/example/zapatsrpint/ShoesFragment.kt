@@ -5,7 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.navigation.Navigation
+import com.example.zapatsrpint.databinding.FragmentShoesBinding
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -20,17 +21,17 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class ShoesFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = nombre
-    private var param2: String? = precio
-    private var param3: String? = null
+
+    private lateinit var binding: FragmentShoesBinding
+    private var param1: String? = null
+    private var param2: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
-            param3 = it.getString(ARG_PARAM3)
+
         }
     }
 
@@ -38,8 +39,25 @@ class ShoesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_shoes, container, false)
 
+        binding = FragmentShoesBinding.inflate(layoutInflater)
+        initListener()
+        return binding.root
+
+
+
+    }
+
+    private fun initListener() {
+        binding.imgCarro.setOnClickListener {
+            Navigation.findNavController(requireView()).navigate(R.id.action_shoesFragment_to_detailFragment)
+        }
+        val adapter = Adapter()
+        val zapatos = Zapatos()
+
+        val listaZapatos = zapatos.returnShoeList()
+        adapter.setData(listaZapatos)
+        binding.recyclerViewCarro.adapter =adapter
 
     }
 

@@ -1,7 +1,7 @@
 package com.example.zapatsrpint
 
 class Zapato {
-    fun returnShoeList(): List<zapato> {
+    fun returnShoeList(): List<Zapato> {
         val shoeList = mutableListOf<zapato>()
         val shoeItem1 = zapato("Zapato 1", "https://zapatoscl.vtexassets.com/arquivos/ids/1019819-800-auto?v=638107220215670000&width=800&height=auto&aspect=true", 99.99)
         shoeList.add(shoeItem1)

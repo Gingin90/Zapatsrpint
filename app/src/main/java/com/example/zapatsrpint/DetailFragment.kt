@@ -31,7 +31,7 @@ class DetailFragment: Fragment(),IviewPresenter {
     private lateinit var binging:FragmentDetailBinding
     private lateinit var mSharedPreferences:SharedPreferences
     private lateinit var gson: Gson
-    private lateinit var  zapatoslista: MutableList<zapato>
+    private lateinit var  zapatoslista: MutableList<Zapato>
     val bundle = Bundle()
 
     // TODO: Rename and change types of parameters

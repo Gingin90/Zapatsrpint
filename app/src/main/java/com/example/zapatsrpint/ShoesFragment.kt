@@ -49,15 +49,15 @@ class ShoesFragment : Fragment() {
     }
 
     private fun initListener() {
-        binding.img.setOnClickListener {
+        binding.imgCarrito.setOnClickListener {
             Navigation.findNavController(requireView()).navigate(R.id.action_shoesFragment_to_detailFragment)
         }
         val adapter = Adapter()
-        val zapatos = Zapatos()
+        val zapatos = Zapato()
 
         val listaZapatos = zapatos.returnShoeList()
         adapter.setData(listaZapatos)
-        binding.recyclerViewCarro.adapter =adapter
+        binding.recyclerView.adapter =adapter
 
     }
 

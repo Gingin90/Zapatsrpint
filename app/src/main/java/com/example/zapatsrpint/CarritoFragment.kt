@@ -9,25 +9,25 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import com.example.zapatsrpint.databinding.FragmentCarritoBinding
-import com.example.zapatsrpint.databinding.ItemBinding
-
+import com.example.zapatsrpint.databinding.ItemcarritoBinding
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
+private const val ARG_PARAM1 = "lista"
 private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [CarritoFragment.newInstance] factory method to
+ * Use the [carrito.newInstance] factory method to
  * create an instance of this fragment.
  */
-class CarritoFragment : Fragment() {
-
+class CarritoFragment: Fragment() {
     private lateinit var mSharedPreferences: SharedPreferences
     private lateinit var gson: Gson
     private lateinit var binging: FragmentCarritoBinding
-    private lateinit var bingingAdapter: ItemBinding
+    private lateinit var bingingAdapterCarrito: ItemcarritoBinding
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -41,14 +41,15 @@ class CarritoFragment : Fragment() {
     }
 
     override fun onCreateView(
+
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentCarritoBinding.inflate(layoutInflater)
-        bindingAdapter = ItemBinding.inflate(layoutInflater)
+        binging = FragmentCarritoBinding.inflate(layoutInflater)
+        bingingAdapterCarrito = ItemcarritoBinding.inflate(layoutInflater)
         // Inflate the layout for this fragment
         initListener()
-        return (binding.root)
+        return (binging.root)
 
     }
 
@@ -57,15 +58,20 @@ class CarritoFragment : Fragment() {
         mSharedPreferences =requireContext().getSharedPreferences("data", Context.MODE_PRIVATE)
         gson = Gson()
         var lista =getList()
-        val adapter = Adapter()
+        val adapter = AdapterCarrito()
         adapter.setData(lista)
-        binding.recyclerViewCarro.adapter=adapter
+        binging.recyclerViewCarro.adapter=adapter
         var valorTotal:Double = calcularValor(lista)
+
+
+
+
         binging.btnBorrarLista.setOnClickListener {
             mSharedPreferences.edit().clear().apply()
-            Navigation.findNavController(requireView()).navigate(R.id.action_shoesFragment_to_detailFragment)
+            Navigation.findNavController(requireView())
+                .navigate(R.id.action_carritoFragment_to_detailFragment)
         }
-        bingingAdapter.btnBorrarSeleccionado.setOnClickListener{
+        bingingAdapterCarrito.btnBorrarSeleccionado.setOnClickListener{
             valorTotal = calcularValor(lista)
         }
     }
@@ -91,7 +97,7 @@ class CarritoFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment CarritoFragment.
+         * @return A new instance of fragment carrito.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic

@@ -49,7 +49,7 @@ class ShoesFragment : Fragment() {
     }
 
     private fun initListener() {
-        binding.imgCarro.setOnClickListener {
+        binding.img.setOnClickListener {
             Navigation.findNavController(requireView()).navigate(R.id.action_shoesFragment_to_detailFragment)
         }
         val adapter = Adapter()

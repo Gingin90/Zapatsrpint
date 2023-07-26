@@ -26,8 +26,8 @@ private const val ARG_PARAM2 = "param2"
 class CarritoFragment: Fragment() {
     private lateinit var mSharedPreferences: SharedPreferences
     private lateinit var gson: Gson
-    private lateinit var binging: FragmentCarritoBinding
-    private lateinit var bingingAdapterCarrito: ItemcarritoBinding
+    private lateinit var binding: FragmentCarritoBinding
+    private lateinit var bindingAdapterCarrito: ItemcarritoBinding
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -45,11 +45,11 @@ class CarritoFragment: Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binging = FragmentCarritoBinding.inflate(layoutInflater)
-        bingingAdapterCarrito = ItemcarritoBinding.inflate(layoutInflater)
+        binding = FragmentCarritoBinding.inflate(layoutInflater)
+        bindingAdapterCarrito = ItemcarritoBinding.inflate(layoutInflater)
         // Inflate the layout for this fragment
         initListener()
-        return (binging.root)
+        return (binding.root)
 
     }
 
@@ -60,18 +60,17 @@ class CarritoFragment: Fragment() {
         var lista =getList()
         val adapter = AdapterCarrito()
         adapter.setData(lista)
-        binging.recyclerViewCarro.adapter=adapter
+        binding.recyclerViewCarro.adapter=adapter
         var valorTotal:Double = calcularValor(lista)
 
 
 
 
-        binging.btnBorrarLista.setOnClickListener {
+        binding.btnBorrarLista.setOnClickListener {
             mSharedPreferences.edit().clear().apply()
-            Navigation.findNavController(requireView())
-                .navigate(R.id.action_carritoFragment_to_detailFragment)
+            Navigation.findNavController(requireView()).navigate(R.id.action_carritoFragment_to_detailFragment)
         }
-        bingingAdapterCarrito.btnBorrarSeleccionado.setOnClickListener{
+        bindingAdapterCarrito.btnBorrarSeleccionado.setOnClickListener{
             valorTotal = calcularValor(lista)
         }
     }

@@ -2,6 +2,7 @@ package com.example.zapatsrpint
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.zapatsrpint.databinding.ItemcarritoBinding
@@ -39,7 +40,7 @@ class AdapterCarrito: RecyclerView.Adapter <AdapterCarrito.ViewHolder>() {
                 zapatos.remove(item)
 
                 notifyDataSetChanged()
-
+                Navigation.findNavController(binding.root).navigate(R.id.action_carritoFragment_to_detailFragment,bundle)
             }
 
         }

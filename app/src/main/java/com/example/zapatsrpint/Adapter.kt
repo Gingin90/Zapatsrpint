@@ -43,8 +43,9 @@ class Adapter: RecyclerView.Adapter <Adapter.ViewHolder>() {
             bundle.putString("nombre",item.nombre)
             bundle.putString("precio", item.precio.toString())
             bundle.putString("url",item.url)
-            binding.cardview.setOnClickListener({ Navigation.findNavController(binding.root).navigate(R.id.action_shoesFragment_to_detailFragment,bundle)
-            })
+            binding.cardview.setOnClickListener{
+                Navigation.findNavController(binding.root).navigate(R.id.action_shoesFragment_to_detailFragment,bundle)
+            }
         }
     }
 }

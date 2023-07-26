@@ -40,7 +40,8 @@ class AdapterCarrito: RecyclerView.Adapter <AdapterCarrito.ViewHolder>() {
                 zapatos.remove(item)
 
                 notifyDataSetChanged()
-                Navigation.findNavController(binding.root).navigate(R.id.action_carritoFragment_to_detailFragment,bundle)
+
+                Navigation.findNavController(binding.root).navigate(R.id.action_carritoFragment_to_detailFragment)
             }
 
         }

@@ -27,8 +27,8 @@ private const val ARG_PARAM3 = "url"
  * Use the [detalle.newInstance] factory method to
  * create an instance of this fragment.
  */
- class Detail: Fragment(),IviewPresenter {
-    private lateinit var binging:FragmentDetailBinding
+ class DetailFragment: Fragment(),IviewPresenter {
+    private lateinit var binding:FragmentDetailBinding
     private lateinit var mSharedPreferences:SharedPreferences
     private lateinit var gson: Gson
     private lateinit var  zapatoslista: MutableList<Zapatio>
@@ -54,22 +54,24 @@ private const val ARG_PARAM3 = "url"
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binging = FragmentDetailBinding.inflate(layoutInflater)
+        binding = FragmentDetailBinding.inflate(layoutInflater)
         initListener()
-        return binging.root
+        return binding.root
     }
 
     private fun initListener() {
 
-        binging.imgCarro.load(param3)
-        binging.txtName.text =param1
-        binging.txtAmount.text = "$$param2"
+        binding.imgzap.load(param3)
+        binding.txtName.text =param1
+        binding.txtAmount.text = "$$param2"
         mSharedPreferences =requireContext().getSharedPreferences("data", Context.MODE_PRIVATE)
         gson = Gson()
 
         zapatoslista = getList()
+        binding.imgzap.setOnClickListener {
+            binding.btVolver.setOnClickListener {
 
-        binging.imgzap.setOnClickListener {
+            }
             Navigation.findNavController(requireView()).navigate(R.id.action_detailFragment_to_carritoFragment,bundle)
         }
 
@@ -77,9 +79,10 @@ private const val ARG_PARAM3 = "url"
 
     }
 
+
     private fun SaveData() {
         val preferences = this.requireActivity().getSharedPreferences("pref", MODE_PRIVATE)
-        binging.btnComprar.setOnClickListener{
+        binding.btnComprar.setOnClickListener{
 
             var nombre= param1.toString()
             var precio = param2.toString().toDouble()
@@ -124,7 +127,7 @@ private const val ARG_PARAM3 = "url"
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            Detail().apply {
+            DetailFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
